@@ -1,0 +1,24 @@
+public class UpdateNetSubscriptionAmount
+{
+    @InvocableMethod
+    public static void UpdateNetSAmount(List<Contract> contracts)
+    {
+        Contract contract = contracts.get(0);
+        List<SBQQ__Subscription__c> subscriptions =[select id,SBQQ__NetPrice__c from SBQQ__Subscription__c where SBQQ__Contract__c = :contract.Id];
+        System.debug('msg0');
+        System.debug(contract);
+        System.debug('msg0');
+        System.debug('msg1');
+        System.debug(subscriptions);
+        System.debug('msg1');
+        Double amount = 0.0;
+        for (SBQQ__Subscription__c subscription : subscriptions) {
+            amount = amount + subscription.SBQQ__NetPrice__c;
+        }
+        System.debug('msg2');
+        System.debug(amount);
+        System.debug('msg2');
+        //contract.Update_Net_Subscription_1__c = amount;
+        //Update contract;
+   }
+}
